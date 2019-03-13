@@ -18,6 +18,7 @@ class Client(object):
         auth = base64.b64encode(auth)
         auth = auth.decode()
         auth = "Basic {}".format(auth)
+        print(auth)
         ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) " \
             + "AppleWebKit/537.36 (KHTML, like Gecko) " \
             + "Chrome/70.0.3538.77 Safari/537.36'
@@ -55,3 +56,12 @@ class Client(object):
                 return response.text
         else:
             response.raise_for_status()
+
+    def create_path(self, base:str, id: int = None, name: str = None):
+        if id is not None:
+            path = "{}/id/{}".format(base, id)
+        elif name is not None:
+            path = "{}/name/{}".format(base, name)
+        else:
+            path = base
+        return path
