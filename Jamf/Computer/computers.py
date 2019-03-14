@@ -32,10 +32,7 @@ class Computers(Client):
         @params[in]     id      コンピューターのIDを指定
         @return         dict    取得した情報を返却します
         """
-        if id is not None:
-            path = "{}/id/{}".format(self.path, id)
-        else:
-            path = self.path
+        path = self.create_path(self.path, id, name)
         response = self.request(method="get", path=path, to_dict=True)
         return response
 

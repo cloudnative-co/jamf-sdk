@@ -5,7 +5,7 @@ import xmltodict
 
 class Client(object):
     session = None
-    headerd: dict = dict()
+    headers: dict = dict()
     host: str = None
 
     def __init__(self, company: str):

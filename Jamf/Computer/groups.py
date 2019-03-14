@@ -1,10 +1,10 @@
 from ..client import Client
 
 
-class Groups(Client):
+class ComputerGroups(Client):
     """
     @namespace  Jamf.Computer
-    @class      Group
+    @class      ComputerGroups
     @brief      コンピューターグループ操作用クラス
     """
     path = "computergroups"
@@ -33,12 +33,7 @@ class Groups(Client):
         @params[in]     name    コンピューターグループの名前を指定
         @return         dict     取得した情報を返却します
         """
-        if id is not None:
-            path = "{}/id/{}".format(self.path, id)
-        elif name is not None:
-            path = "{}/name/{}".format(self.path, name)
-        else:
-            path = self.path
+        path = self.create_path(self.path, id, name)
         response = self.request(method="get", path=path, to_dict=True)
         return response
 
@@ -66,13 +61,7 @@ class Groups(Client):
         @params[in]     name    コンピューターグループの名前を指定
         @return         dict    更新したコンピューターグループのIDを返却します
         """
-        if id is not None:
-            path = "{}/id/{}".format(self.path, id)
-        elif name is not None:
-            path = "{}/name/{}".format(self.path, name)
-        else:
-            path = self.path
-
+        path = self.create_path(self.path, id, name)
         response = self.request(
             method="put",
             path=path,
@@ -91,9 +80,6 @@ class Groups(Client):
         @params[in]     name    コンピューターグループの名前を指定
         @return         dict    削除したコンピューターグループのIDを返却します
         """
-        if id is not None:
-            path = "{}/id/{}".format(self.path, id)
-        elif name is not None:
-            path = "{}/name/{}".format(self.path, name)
+        path = self.create_path(self.path, id, name)
         response = self.request(method="delete", path=path, to_dict=True)
         return response
