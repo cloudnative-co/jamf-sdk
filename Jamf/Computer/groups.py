@@ -22,7 +22,7 @@ class ComputerGroups(Client):
             self.host = client.host
             self.headers = client.headers
         elif company is not None:
-            super(Groups, self).__init__(company)
+            super(ComputerGroups, self).__init__(company)
 
     def get(self, id: int = None, name: str = None):
         """
