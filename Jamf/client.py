@@ -1,4 +1,5 @@
 import base64
+import json
 import requests
 import xmltodict
 
@@ -50,7 +51,10 @@ class Client(object):
         if response.status_code in [200, 201, 204]:
             if to_dict:
                 data = response.text
-                return xmltodict.parse(data)
+                try:
+                    return json.loads(data)
+                except :
+                    return xmltodict.parse(data)
             else:
                 return response.text
         else:
