@@ -45,7 +45,7 @@ class Client(object):
             if to_xml:
                 payload = xmltodict.unparse(payload)
                 args["headers"]["Content-Type"] = "application/xml"
-            args["data"] = payload
+            args["data"] = payload.encode('utf-8')
 
         response = getattr(self.session, method)(**args)
         if response.status_code in [200, 201, 204]:
